@@ -50,18 +50,17 @@ encodings = {
 	'W': 49,
 	'X': 50,
 	'Y': 51,
-	'Z': 52
+	'Z': 52,
+	' ': 53,
+	'.': 54,
+	'!': 55,
+	'\n':56
 }
-
-ary = ['c', 'a', 't', 'G']
 
 def betterSixBit(num):
 	six_bit_str = ''
 	while num:
-		if num % 2 != 0:
-			six_bit_str = '1' + six_bit_str
-		elif num % 2 == 0:
-			six_bit_str = '0' + six_bit_str
+		six_bit_str = str(num % 2) + six_bit_str
 		num = num >> 1
 	if not num:
 			while len(six_bit_str) < 6:
@@ -83,9 +82,12 @@ def byte_printer(string):
 		foo = 2 ** exponent
 		answer = first * foo
 		num = num + answer
-
 	return chr(num)
 
+
+x = open('data.dat')
+s = x.read()
+ary = [i for i in s]
 
 encoded_ary = []
 for i in range(len(ary)):
@@ -100,7 +102,6 @@ for i in compressed_ary:
 	d = byte_printer(i)
 	f.write(d)
 f.close()
-
 
 
 

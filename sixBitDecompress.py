@@ -50,16 +50,18 @@ encodings = {
 	'W': 49,
 	'X': 50,
 	'Y': 51,
-	'Z': 52
+	'Z': 52,
+	' ': 53,
+	'.': 54,
+	'!': 55,
+	'\n':56
 }
 
 
 def char_to_bit(char):
 	num = ord(char)
-	convert = unichr(num)
 	ans = bin(num)
-
-	return ans[0] + ans[2:]
+	return ans[2:]
 
 
 def make_eight_bit(num):
@@ -72,14 +74,11 @@ def make_eight_bit(num):
 def six_bit_byte_to_number(string):
 	num = 0
 	for i in range(len(string)):
-
 		first = int(string[i])
 		exponent =  5 - i
 		foo = 2 ** exponent
 		answer = first * foo
-		
 		num = num + answer
-
 	return num
 
 
@@ -89,11 +88,8 @@ for i in f:
 	d = list(i)
 
 new_ary = [char_to_bit(i) for i in d]
-
 eightbit_ary = [make_eight_bit(i) for i in new_ary]
-
 temp = ''.join(eightbit_ary)
-
 sixbit_ary = [temp[i:i+6] for i in range(0, len(temp), 6)]
 
 final_ary = []
@@ -103,7 +99,7 @@ for i in range(len(sixbit_ary)):
 		if encodings[k] == char_data:
 			final_ary.append(k)
 
-f2 = open("decompressedOutput.dat", 'wb')
+f2 = open("decompressedOutput.dat", "wb")
 for i in final_ary:
 	f2.write(i)
 f2.close()
