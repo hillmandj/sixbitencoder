@@ -63,8 +63,8 @@ def betterSixBit(num):
 		six_bit_str = str(num % 2) + six_bit_str
 		num = num >> 1
 	if not num:
-			while len(six_bit_str) < 6:
-				six_bit_str = '0' + six_bit_str
+		while len(six_bit_str) < 6:
+			six_bit_str = '0' + six_bit_str
 	return six_bit_str
 
 
